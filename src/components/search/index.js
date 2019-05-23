@@ -6,12 +6,13 @@ import key_maps_google from '../../../config/keyMaps';
 
 export default class Search extends Component {
     render() {
+        
+        const { onLocationSelected } = this.props;
+
         return <GooglePlacesAutocomplete 
             placeholder="Para onde?"
             placeholderTextColor="#333"
-            onPress={(data, details) => {
-                
-            }}
+            onPress={onLocationSelected}
             query={{
                 key: key_maps_google,
                 language: 'pt', 
