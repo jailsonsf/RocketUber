@@ -5,8 +5,12 @@ import { Platform } from 'react-native';
 import key_maps_google from '../../../config/keyMaps';
 
 export default class Search extends Component {
+    state = {
+        searchFocused: false,
+    }
+
     render() {
-        
+        const { searchFocused } = this.state;
         const { onLocationSelected } = this.props;
 
         return <GooglePlacesAutocomplete 
@@ -18,9 +22,12 @@ export default class Search extends Component {
                 language: 'pt', 
             }}
             textInputProps={{
+                onFocus: () => { this.setState({ searchFocused: true }) },
+                onBlur: () => { this.setState({ searchFocused: false }) },
                 autoCapitalize: "none",
                 autoCorrect: false
             }}
+            listViewDisplayed={searchFocused}
             fetchDetails
             enablePoweredByContainer={false}
             styles={{

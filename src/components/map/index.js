@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View } from 'react-native';
 import MapView from 'react-native-maps';
 
+import { getPixelsSize } from '../../utils';
+
 import Seach from '../search';
 import Directions from '../directions'
 
@@ -55,12 +57,22 @@ export default class Map extends Component {
                     region={ region }
                     showsUserLocation
                     loadingEnabled
+                    ref={ el => this.mapView = el }
                 >
                     { destination && (
                         <Directions 
                             origin={ region }
                             destination={ destination }
-                            onReady={ () => {}}
+                            onReady={ result => {
+                                this.mapView.fitToCoordinates(result.coordinates, {
+                                    edgePadding: {
+                                        right: getPixelsSize(50),
+                                        left: getPixelsSize(50),
+                                        top: getPixelsSize(50),
+                                        bottom: getPixelsSize(50)
+                                    }
+                                });
+                            }}
                         />
                     ) }
                 </MapView>
