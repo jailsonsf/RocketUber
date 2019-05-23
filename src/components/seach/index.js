@@ -10,7 +10,7 @@ export default class Search extends Component {
             placeholderTextColor="#333"
             onPress={ () => {} }
             query={{
-                key: this.key_maps_google,
+                key: key_maps_google,
                 language: 'pt', 
             }}
             textInputProps={{
