@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from 'react-native';
 import MapView from 'react-native-maps';
 
-import Seach from '../seach';
+import Seach from '../search';
 
 export default class Map extends Component {
     state = {
