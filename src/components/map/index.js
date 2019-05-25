@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { View } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 import { getPixelsSize } from '../../utils';
 
 import Seach from '../search';
 import Directions from '../directions'
+
+import markerImage from '../../assets/marker.png';
 
 export default class Map extends Component {
     state = {
@@ -60,20 +62,27 @@ export default class Map extends Component {
                     ref={ el => this.mapView = el }
                 >
                     { destination && (
-                        <Directions 
-                            origin={ region }
-                            destination={ destination }
-                            onReady={ result => {
-                                this.mapView.fitToCoordinates(result.coordinates, {
-                                    edgePadding: {
-                                        right: getPixelsSize(50),
-                                        left: getPixelsSize(50),
-                                        top: getPixelsSize(50),
-                                        bottom: getPixelsSize(50)
-                                    }
-                                });
-                            }}
-                        />
+                        <Fragment>
+                            <Directions 
+                                origin={ region }
+                                destination={ destination }
+                                onReady={ result => {
+                                    this.mapView.fitToCoordinates(result.coordinates, {
+                                        edgePadding: {
+                                            right: getPixelsSize(50),
+                                            left: getPixelsSize(50),
+                                            top: getPixelsSize(50),
+                                            bottom: getPixelsSize(50)
+                                        }
+                                    });
+                                }}
+                            />
+                            <Marker
+                                coordinate={ destination }
+                                anchor={{ x: 0, y: 0 }}
+                                image={ markerImage }
+                            />
+                        </Fragment>
                     ) }
                 </MapView>
                 <Seach onLocationSelected={this.handleLocationSelected} />
