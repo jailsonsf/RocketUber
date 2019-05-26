@@ -9,6 +9,8 @@ import Directions from '../directions'
 
 import markerImage from '../../assets/marker.png';
 
+import { LocationBox, LocationText } from './styles';
+
 export default class Map extends Component {
     state = {
         region: null,
@@ -18,13 +20,13 @@ export default class Map extends Component {
     async componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             ({ coords: { latitude, longitude } }) => {
-                this.setState({ 
-                    region: { 
-                        latitude, 
-                        longitude, 
+                this.setState({
+                    region: {
+                        latitude,
+                        longitude,
                         latitudeDelta: 0.0143,
                         longitudeDelta: 0.0134,
-                    } 
+                    }
                 });
             },
             () => {},
@@ -54,7 +56,7 @@ export default class Map extends Component {
 
         return (
             <View style={{ flex: 1 }}>
-                <MapView 
+                <MapView
                     style={{ flex: 1 }}
                     region={ region }
                     showsUserLocation
@@ -63,7 +65,7 @@ export default class Map extends Component {
                 >
                     { destination && (
                         <Fragment>
-                            <Directions 
+                            <Directions
                                 origin={ region }
                                 destination={ destination }
                                 onReady={ result => {
@@ -81,7 +83,11 @@ export default class Map extends Component {
                                 coordinate={ destination }
                                 anchor={{ x: 0, y: 0 }}
                                 image={ markerImage }
-                            />
+                            >
+                                <LocationBox>
+                                    <LocationText>{ destination.title }</LocationText>
+                                </LocationBox>
+                            </Marker>
                         </Fragment>
                     ) }
                 </MapView>
