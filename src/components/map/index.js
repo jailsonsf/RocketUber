@@ -4,7 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 
 import { getPixelsSize } from '../../utils';
 
-import Seach from '../search';
+import Search from '../search';
 import Directions from '../directions'
 
 import markerImage from '../../assets/marker.png';
@@ -91,7 +91,7 @@ export default class Map extends Component {
                         </Fragment>
                     ) }
                 </MapView>
-                <Seach onLocationSelected={this.handleLocationSelected} />
+                <Search onLocationSelected={this.handleLocationSelected} />
             </View>
         );
     }
