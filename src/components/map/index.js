@@ -20,7 +20,7 @@ import {
 import Details from "../details";
 import Search from "../search";
 
- Geocoder.init('Your api key');
+Geocoder.init('Your api key');
 
 export default class Map extends Component {
     state = {
@@ -130,8 +130,6 @@ export default class Map extends Component {
                         </Fragment>
                     ) }
                 </MapView>
-<<<<<<< HEAD
-
                 { destination ? (
                     <Fragment>
                         <Back onPress={this.handleBack}>
@@ -142,9 +140,6 @@ export default class Map extends Component {
                 ) : ( 
                     <Search onLocationSelected={this.handleLocationSelected} /> 
                 )}
-=======
-                <Search onLocationSelected={this.handleLocationSelected} />
->>>>>>> master
             </View>
         );
     }
