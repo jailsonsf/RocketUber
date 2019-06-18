@@ -8,6 +8,7 @@ import { getPixelsSize } from '../../utils';
 import Search from '../search';
 import Directions from '../directions';
 import Details from '../details';
+import Directions from '../directions'
 
 import markerImage from '../../assets/marker.png';
 import backImage from '../../assets/back.png';
@@ -129,6 +130,7 @@ export default class Map extends Component {
                         </Fragment>
                     ) }
                 </MapView>
+<<<<<<< HEAD
 
                 { destination ? (
                     <Fragment>
@@ -140,6 +142,9 @@ export default class Map extends Component {
                 ) : ( 
                     <Search onLocationSelected={this.handleLocationSelected} /> 
                 )}
+=======
+                <Search onLocationSelected={this.handleLocationSelected} />
+>>>>>>> master
             </View>
         );
     }
