@@ -28,10 +28,18 @@ export const LocationText = styled.Text`
     color: #333;
 `;
 
+export const Back = styled.TouchableOpacity`
+    position: absolute;
+    top: ${Platform.select({ ios: 60, android: 40 })};
+    left: 20px;
+`;
+
 export const LocationTimeBox = styled.View`
     background-color: #222;
     padding: 3px 8px;
 `;
+
+
 
 export const LocationTimeText = styled.Text`
     color: #fff;

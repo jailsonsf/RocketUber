@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from "react";
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import Geocoder from 'react-native-geocoding';
 
 import { getPixelsSize } from '../../utils';
 
-import Seach from '../search';
-import Directions from '../directions'
+import Search from '../search';
+import Directions from '../directions';
+import Details from '../details';
 
 import markerImage from '../../assets/marker.png';
+import backImage from '../../assets/back.png';
 
 import { 
-    LocationBox, LocationText,
-    LocationTimeBox, LocationTimeText, LocationTimeTextSmall    
+    LocationBox, LocationText, LocationTimeBox,
+    LocationTimeText, LocationTimeTextSmall, Back
  } from './styles';
+import Details from "../details";
+import Search from "../search";
 
  Geocoder.init('Your api key');
 
@@ -66,6 +70,10 @@ export default class Map extends Component {
         });
     }
 
+    handleBack = () => {
+        this.setState({ destination: null })
+    }
+
     render() {
         const { region, destination, duration, location } = this.state;
 
@@ -91,7 +99,7 @@ export default class Map extends Component {
                                             right: getPixelsSize(50),
                                             left: getPixelsSize(50),
                                             top: getPixelsSize(50),
-                                            bottom: getPixelsSize(50)
+                                            bottom: getPixelsSize(350)
                                         }
                                     });
                                 }}
@@ -121,7 +129,17 @@ export default class Map extends Component {
                         </Fragment>
                     ) }
                 </MapView>
-                <Seach onLocationSelected={this.handleLocationSelected} />
+
+                { destination ? (
+                    <Fragment>
+                        <Back onPress={this.handleBack}>
+                            <Image source={backImage} />
+                        </Back>
+                        <Details />
+                    </Fragment>
+                ) : ( 
+                    <Search onLocationSelected={this.handleLocationSelected} /> 
+                )}
             </View>
         );
     }
